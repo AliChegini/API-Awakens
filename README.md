@@ -7,6 +7,8 @@ In the mockup, you will notice that regardless of which view a user is on, there
 Lastly, please include appropriate error handling. The app needs to demonstrate the ability to anticipate and handle errors for at least the following possible issues:
 
 The device went offline during an API call
+
 A user entering a 0 or negative exchange rate
+
 An error resulting from a key or element missing from the JSON returned from the API
 
