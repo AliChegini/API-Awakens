@@ -19,13 +19,10 @@ enum costType {
 }
 
 
-struct Character {
-    let name: String
-    let born: String
-    let home: String
-    let height: Double
-    let eyes: String
-    let hair: String
+enum IdType: String {
+    case people
+    case vehicle
+    case starship
 }
 
 
@@ -38,36 +35,6 @@ protocol CommonAttributes {
     var classType: String { get set }
     var crew: Int { get set }
 }
-
-
-struct Vehicle: CommonAttributes {
-    var name: String
-    var make: String
-    var cost: Int
-    var length: Double
-    var classType: String
-    var crew: Int
-}
-
-
-struct Starship: CommonAttributes {
-    var name: String
-    var make: String
-    var cost: Int
-    var length: Double
-    var classType: String
-    var crew: Int
-}
-
-
-
-
-
-
-
-
-
-
 
 
 

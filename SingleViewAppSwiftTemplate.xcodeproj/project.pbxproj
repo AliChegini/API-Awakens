@@ -17,6 +17,12 @@
 		7C54061220AA1830004036E9 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C54061120AA1830004036E9 /* Model.swift */; };
 		7C54061420AA39D3004036E9 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C54061320AA39D3004036E9 /* ViewModel.swift */; };
 		7C54061620AA62C0004036E9 /* JSONDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C54061520AA62C0004036E9 /* JSONDownloader.swift */; };
+		7CA6473720ACB2F700A362CE /* IdentificationDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA6473620ACB2F700A362CE /* IdentificationDetails.swift */; };
+		7CBC124C20ADF3410070E804 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBC124B20ADF3410070E804 /* Character.swift */; };
+		7CBC124E20ADF3550070E804 /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBC124D20ADF3550070E804 /* Vehicle.swift */; };
+		7CBC125020ADF3650070E804 /* Starship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBC124F20ADF3650070E804 /* Starship.swift */; };
+		7CE0E3C820AB6A080059991C /* StarWarsErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE0E3C720AB6A080059991C /* StarWarsErrors.swift */; };
+		7CE0E3CA20AB72FA0059991C /* StarWarsAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE0E3C920AB72FA0059991C /* StarWarsAPIClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +59,12 @@
 		7C54061120AA1830004036E9 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		7C54061320AA39D3004036E9 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		7C54061520AA62C0004036E9 /* JSONDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDownloader.swift; sourceTree = "<group>"; };
+		7CA6473620ACB2F700A362CE /* IdentificationDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentificationDetails.swift; sourceTree = "<group>"; };
+		7CBC124B20ADF3410070E804 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
+		7CBC124D20ADF3550070E804 /* Vehicle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
+		7CBC124F20ADF3650070E804 /* Starship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Starship.swift; sourceTree = "<group>"; };
+		7CE0E3C720AB6A080059991C /* StarWarsErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarWarsErrors.swift; sourceTree = "<group>"; };
+		7CE0E3C920AB72FA0059991C /* StarWarsAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarWarsAPIClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,12 +118,18 @@
 				3A8AADC81DF9B85E00A2B931 /* AppDelegate.swift */,
 				3A8AADCA1DF9B85E00A2B931 /* ViewController.swift */,
 				7C54061120AA1830004036E9 /* Model.swift */,
+				7CBC124B20ADF3410070E804 /* Character.swift */,
+				7CBC124D20ADF3550070E804 /* Vehicle.swift */,
+				7CBC124F20ADF3650070E804 /* Starship.swift */,
 				7C54061320AA39D3004036E9 /* ViewModel.swift */,
+				7CE0E3C720AB6A080059991C /* StarWarsErrors.swift */,
+				7C54061520AA62C0004036E9 /* JSONDownloader.swift */,
+				7CE0E3C920AB72FA0059991C /* StarWarsAPIClient.swift */,
+				7CA6473620ACB2F700A362CE /* IdentificationDetails.swift */,
 				3A8AADCC1DF9B85E00A2B931 /* Main.storyboard */,
 				3A8AADCF1DF9B85E00A2B931 /* Assets.xcassets */,
 				3A8AADD11DF9B85E00A2B931 /* LaunchScreen.storyboard */,
 				3A8AADD41DF9B85E00A2B931 /* Info.plist */,
-				7C54061520AA62C0004036E9 /* JSONDownloader.swift */,
 			);
 			path = SingleViewAppSwiftTemplate;
 			sourceTree = "<group>";
@@ -268,11 +286,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CBC124C20ADF3410070E804 /* Character.swift in Sources */,
+				7CBC125020ADF3650070E804 /* Starship.swift in Sources */,
 				7C54061220AA1830004036E9 /* Model.swift in Sources */,
 				3A8AADCB1DF9B85E00A2B931 /* ViewController.swift in Sources */,
 				7C54061620AA62C0004036E9 /* JSONDownloader.swift in Sources */,
 				7C54061420AA39D3004036E9 /* ViewModel.swift in Sources */,
+				7CE0E3C820AB6A080059991C /* StarWarsErrors.swift in Sources */,
 				3A8AADC91DF9B85E00A2B931 /* AppDelegate.swift in Sources */,
+				7CA6473720ACB2F700A362CE /* IdentificationDetails.swift in Sources */,
+				7CBC124E20ADF3550070E804 /* Vehicle.swift in Sources */,
+				7CE0E3CA20AB72FA0059991C /* StarWarsAPIClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
