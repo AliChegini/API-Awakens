@@ -12,8 +12,6 @@ class ViewController: UIViewController {
     
     
     @IBOutlet weak var name: UILabel!
-    let client = StarWarsAPIClient()
-    
     
 
     override func viewDidLoad() {
@@ -21,12 +19,6 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         print("We are good to go!")
         
-        let characters = IdentificationDetails(idType: .people)
-    
-        client.getCharacters(with: characters) { characters, error in
-            print(characters!)
-            print(error!)
-        }
     }
 
     override func didReceiveMemoryWarning() {

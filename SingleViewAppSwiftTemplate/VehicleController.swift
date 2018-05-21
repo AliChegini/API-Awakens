@@ -9,11 +9,22 @@
 import UIKit
 
 class VehicleController: UIViewController {
+    
+    let client = StarWarsAPIClient()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.title = "Vehicles"
+        
+        let vehicles = IdentificationDetails(idType: .vehicles)
+        
+        client.getObjects(with: vehicles) { vehicles, error in
+            print(vehicles!)
+            print(error!)
+        }
+        
+        
     }
 
     override func didReceiveMemoryWarning() {

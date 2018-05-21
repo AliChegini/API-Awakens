@@ -10,10 +10,20 @@ import UIKit
 
 class CharacterController: UIViewController {
 
+    let client = StarWarsAPIClient()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.title = "Characters"
+        
+        
+        let characters = IdentificationDetails(idType: .people)
+        
+        client.getObjects(with: characters) { characters, error in
+            print(characters!)
+            print(error!)
+        }
         
     }
 

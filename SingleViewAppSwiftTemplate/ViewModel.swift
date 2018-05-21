@@ -9,6 +9,8 @@
 
 // View Model to format the data for each entity
 
+/*
+
 struct CharacterViewModel {
     let name: String
     let born: String
@@ -66,7 +68,7 @@ struct StarshipViewModel {
 }
 
 
-
+*/
 
 
 
