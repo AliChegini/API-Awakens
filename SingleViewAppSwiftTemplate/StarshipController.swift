@@ -20,9 +20,18 @@ class StarshipController: UIViewController {
         let starships = IdentificationDetails(idType: .starships)
         print("before completion handler")
         client.getObjects(with: starships) { starships, error in
-            print(starships!)
-            print(error!)
+            //print(starships)
+            //print(error)
             print("inside completion handler")
+            
+            let decoder = JSONDecoder()
+            let client = StarWarsAPIClient()
+            
+            
+            //let character = try! decoder.decode(Character.self, from: starships.data)
+            
+            
+            
         }
         
         print("after completion handler")

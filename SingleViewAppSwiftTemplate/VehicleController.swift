@@ -20,8 +20,8 @@ class VehicleController: UIViewController {
         let vehicles = IdentificationDetails(idType: .vehicles)
         
         client.getObjects(with: vehicles) { vehicles, error in
-            print(vehicles!)
-            print(error!)
+            print(vehicles)
+            print(error)
         }
         
         

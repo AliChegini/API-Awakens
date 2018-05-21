@@ -26,6 +26,7 @@
 		7CBC125620AE76440070E804 /* StarshipController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBC125520AE76440070E804 /* StarshipController.swift */; };
 		7CE0E3C820AB6A080059991C /* StarWarsErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE0E3C720AB6A080059991C /* StarWarsErrors.swift */; };
 		7CE0E3CA20AB72FA0059991C /* StarWarsAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE0E3C920AB72FA0059991C /* StarWarsAPIClient.swift */; };
+		7CEC86BB20B3693200FB2904 /* JSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CEC86BA20B3693200FB2904 /* JSONParser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		7CBC125520AE76440070E804 /* StarshipController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarshipController.swift; sourceTree = "<group>"; };
 		7CE0E3C720AB6A080059991C /* StarWarsErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarWarsErrors.swift; sourceTree = "<group>"; };
 		7CE0E3C920AB72FA0059991C /* StarWarsAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarWarsAPIClient.swift; sourceTree = "<group>"; };
+		7CEC86BA20B3693200FB2904 /* JSONParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONParser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +135,7 @@
 				7C54061320AA39D3004036E9 /* ViewModel.swift */,
 				7CE0E3C720AB6A080059991C /* StarWarsErrors.swift */,
 				7C54061520AA62C0004036E9 /* JSONDownloader.swift */,
+				7CEC86BA20B3693200FB2904 /* JSONParser.swift */,
 				7CE0E3C920AB72FA0059991C /* StarWarsAPIClient.swift */,
 				7CA6473620ACB2F700A362CE /* IdentificationDetails.swift */,
 				3A8AADCC1DF9B85E00A2B931 /* Main.storyboard */,
@@ -306,6 +309,7 @@
 				7CE0E3C820AB6A080059991C /* StarWarsErrors.swift in Sources */,
 				7CBC125420AE762A0070E804 /* VehicleController.swift in Sources */,
 				3A8AADC91DF9B85E00A2B931 /* AppDelegate.swift in Sources */,
+				7CEC86BB20B3693200FB2904 /* JSONParser.swift in Sources */,
 				7CA6473720ACB2F700A362CE /* IdentificationDetails.swift in Sources */,
 				7CBC124E20ADF3550070E804 /* Vehicle.swift in Sources */,
 				7CE0E3CA20AB72FA0059991C /* StarWarsAPIClient.swift in Sources */,

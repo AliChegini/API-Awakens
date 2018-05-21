@@ -6,7 +6,7 @@
 //  Copyright © 2018 Treehouse. All rights reserved.
 //
 
-struct Character: UnifiedObjects {
+struct Character: UnifiedObjects, Codable {
     var name: String?
     var born: String?
     var home: String?
@@ -30,6 +30,4 @@ struct Character: UnifiedObjects {
     }
 }
 
-
-let char = Character(name: "as", born: "as", home: "as", height: 12.0, eyes: "brown", hair: "blue")
 

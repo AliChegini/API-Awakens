@@ -16,8 +16,9 @@ class StarWarsAPIClient {
     
     let downloader = JSONDownloader()
     
+    typealias JSON = [String: AnyObject]
     
-    func getObjects(with identificationDetails: IdentificationDetails, completionHandler completion: @escaping (UnifiedObjects?, StarWarsError?) -> Void) {
+    func getObjects(with identificationDetails: IdentificationDetails, completionHandler completion: @escaping (JSON?, StarWarsError?) -> Void) {
         guard let url = URL(string: identificationDetails.description, relativeTo: baseURL) else {
             completion(nil, .invalidURL)
             return
@@ -30,6 +31,7 @@ class StarWarsAPIClient {
                 return
             }
             
+            completion(json, nil)
         }
         
         task.resume()

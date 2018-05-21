@@ -6,7 +6,7 @@
 //  Copyright © 2018 Treehouse. All rights reserved.
 //
 
-struct Starship: UnifiedObjects {
+struct Starship: UnifiedObjects, Codable {
     var name: String?
     var make: String?
     var cost: Int?

@@ -21,8 +21,8 @@ class CharacterController: UIViewController {
         let characters = IdentificationDetails(idType: .people)
         
         client.getObjects(with: characters) { characters, error in
-            print(characters!)
-            print(error!)
+            print(characters)
+            print(error)
         }
         
     }
