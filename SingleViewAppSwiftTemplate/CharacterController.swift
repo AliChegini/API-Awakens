@@ -10,10 +10,20 @@ import UIKit
 
 class CharacterController: UIViewController {
 
+    let client = StarWarsAPIClient()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.title = "Characters"
+        
+        
+        let characters = IdentificationDetails(idType: .people)
+        
+        client.getObjects(with: characters) { characters, error in
+            print(characters!)
+            print(error!)
+        }
         
     }
 
@@ -21,16 +31,5 @@ class CharacterController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

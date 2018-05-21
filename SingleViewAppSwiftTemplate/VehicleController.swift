@@ -9,11 +9,22 @@
 import UIKit
 
 class VehicleController: UIViewController {
+    
+    let client = StarWarsAPIClient()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.title = "Vehicles"
+        
+        let vehicles = IdentificationDetails(idType: .vehicles)
+        
+        client.getObjects(with: vehicles) { vehicles, error in
+            print(vehicles!)
+            print(error!)
+        }
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,15 +32,4 @@ class VehicleController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
