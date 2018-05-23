@@ -31,6 +31,52 @@ struct Starship: UnifiedObjects, Codable {
 }
 
 
+struct Starships {
+    let starships: [Starship]
+    
+    struct ResultsCodingKeys: CodingKey {
+        let stringValue: String
+        
+        init?(stringValue: String) {
+            self.stringValue = stringValue
+        }
+        
+        var intValue: Int? { return nil }
+        init?(intValue: Int) { return nil }
+        
+        static let results = ResultsCodingKeys(stringValue: "results")!
+    }
+    
+    enum StarshipCodingKeys: String, CodingKey {
+        case name
+        case make
+        case cost
+        case length
+        case classType
+        case crew
+    }
+    
+}
+
+
+
+extension Starships: Decodable {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: ResultsCodingKeys.self)
+        let starshipsContainer = try container.nestedContainer(keyedBy: ResultsCodingKeys.self, forKey: .results)
+        
+        self.starships = try starshipsContainer.allKeys.map { key in
+            let starshipContainer = try starshipsContainer.nestedContainer(keyedBy: StarshipCodingKeys, forKey: key)
+            
+            let result = key.stringValue
+            let name = try starshipContainer.decode(String.self, forKey: .name)
+            
+            return Starship(name: name, make: nil, cost: nil, length: 0.0, classType: "Dingo", crew: 32)
+            
+        }
+        
+    }
+}
 
 
 

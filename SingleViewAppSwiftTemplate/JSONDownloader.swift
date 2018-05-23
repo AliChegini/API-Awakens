@@ -19,9 +19,8 @@ class JSONDownloader {
         self.init(configuration: .default)
     }
     
-    typealias JSON = [String: AnyObject]
     
-    func jsonTask(with request: URLRequest, completionHandler completion: @escaping (JSON?, StarWarsError?) -> Void) -> URLSessionDataTask {
+    func dataTask(with request: URLRequest, completionHandler completion: @escaping (Data?, StarWarsError?) -> Void) -> URLSessionDataTask {
         let task = session.dataTask(with: request) { data, response, error in
             
             // Convert to HTTP Response
@@ -32,12 +31,7 @@ class JSONDownloader {
             
             if httpResponse.statusCode == 200 {
                 if let data = data {
-                    do {
-                        let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: AnyObject]
-                        completion(json, nil)
-                    } catch {
-                        completion(nil, .jsonConversionFailure)
-                    }
+                    completion(data, nil)
                 } else {
                     completion(nil, .invalidData)
                 }
@@ -46,6 +40,7 @@ class JSONDownloader {
             }
         }
         return task
+        
     }
 }
 

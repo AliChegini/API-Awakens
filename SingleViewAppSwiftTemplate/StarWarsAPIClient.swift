@@ -16,22 +16,24 @@ class StarWarsAPIClient {
     
     let downloader = JSONDownloader()
     
-    typealias JSON = [String: AnyObject]
     
-    func getObjects(with identificationDetails: IdentificationDetails, completionHandler completion: @escaping (JSON?, StarWarsError?) -> Void) {
+    func getObjects(with identificationDetails: IdentificationDetails, completionHandler completion: @escaping (Data?, StarWarsError?) -> Void) {
         guard let url = URL(string: identificationDetails.description, relativeTo: baseURL) else {
             completion(nil, .invalidURL)
             return
         }
         
         let request = URLRequest(url: url)
-        let task = downloader.jsonTask(with: request) { json, error in
-            guard let json = json else {
+        
+        print(request)
+        
+        let task = downloader.dataTask(with: request) { data, error in
+            guard let data = data else {
                 completion(nil, error)
                 return
             }
             
-            completion(json, nil)
+            completion(data, nil)
         }
         
         task.resume()

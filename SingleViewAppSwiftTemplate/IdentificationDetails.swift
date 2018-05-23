@@ -10,7 +10,7 @@
 struct IdentificationDetails {
     let idType: IdType
     // might be used later
-    //let id: Int
+    //let id: Int = 1
 }
 
 extension IdentificationDetails: CustomStringConvertible {
