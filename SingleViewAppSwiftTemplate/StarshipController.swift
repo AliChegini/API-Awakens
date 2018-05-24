@@ -30,9 +30,9 @@ class StarshipController: UIViewController {
                 return
             }
             
-            let st = try! decoder.decode(Starship.self, from: starships)
+            let allResults = try! decoder.decode(AllResults.self, from: starships)
             
-            print(st.name)
+            print(allResults.results.first?.manufacturer)
         }
         
         print("after completion handler")

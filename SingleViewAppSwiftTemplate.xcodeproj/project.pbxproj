@@ -232,6 +232,7 @@
 				TargetAttributes = {
 					3A8AADC41DF9B85E00A2B931 = {
 						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = CPZ6V3E8L9;
 						ProvisioningStyle = Automatic;
 					};
 					3A8AADD81DF9B85E00A2B931 = {
@@ -462,6 +463,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = CPZ6V3E8L9;
 				INFOPLIST_FILE = SingleViewAppSwiftTemplate/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.teamtreehouse.SingleViewAppSwiftTemplate;
@@ -474,6 +476,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = CPZ6V3E8L9;
 				INFOPLIST_FILE = SingleViewAppSwiftTemplate/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.teamtreehouse.SingleViewAppSwiftTemplate;
