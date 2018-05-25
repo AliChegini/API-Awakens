@@ -135,8 +135,22 @@
                     <view key="view" contentMode="scaleToFill" id="gEr-Qp-sDG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hfK-zS-4me">
+                                <rect key="frame" x="0.0" y="401" width="375" height="216"/>
+                                <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </pickerView>
+                        </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Oko-Z3-PnC" firstAttribute="top" secondItem="hfK-zS-4me" secondAttribute="bottom" constant="50" id="72z-0a-NoJ"/>
+                            <constraint firstAttribute="trailing" secondItem="hfK-zS-4me" secondAttribute="trailing" id="7pH-qD-cci"/>
+                            <constraint firstItem="hfK-zS-4me" firstAttribute="leading" secondItem="gEr-Qp-sDG" secondAttribute="leading" id="LrG-ru-i9k"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="pickerView" destination="hfK-zS-4me" id="cNF-wA-VJ8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QMv-fA-twC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

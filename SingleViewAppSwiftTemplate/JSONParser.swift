@@ -10,16 +10,39 @@ import Foundation
 
 
 struct Result: Decodable {
-    let name: String
-    let manufacturer: String
+    var name: String?
+    var make: String?
+    var cost: String?
+    var length: String?
+    var classType: String?
+    var crew: String?
+    
+    var born: String?
+    var home: String?
+    var height: String?
+    var eyes: String?
+    var hair: String?
+    
+    
+    enum CodingKeys: String, CodingKey {
+        case name
+        case make = "manufacturer"
+        case cost = "cost_in_credits"
+        case length
+        case classType
+        case crew
+        case born
+        case home
+        case height
+        case eyes
+        case hair
+    }
 }
 
 
+
 struct AllResults: Decodable {
-    
-    
     let results: [Result]
-    
 }
 
 

@@ -8,22 +8,21 @@
 
 import UIKit
 
-class StarshipController: UIViewController {
+class StarshipController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
     let client = StarWarsAPIClient()
+    var names: [String] = []
+    
+    @IBOutlet weak var pickerView: UIPickerView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.title = "Starships"
-
         let starships = IdentificationDetails(idType: .starships)
-        print("before completion handler")
+        
         client.getObjects(with: starships) { starships, error in
-            print("starships \(starships)")
-            print("Error \(error)")
-            print("inside completion handler")
-            
             let decoder = JSONDecoder()
             guard let starships = starships else {
                 print("starship is empty")
@@ -31,16 +30,38 @@ class StarshipController: UIViewController {
             }
             
             let allResults = try! decoder.decode(AllResults.self, from: starships)
+            for result in allResults.results {
+                self.names.append(result.name!)
+            }
             
-            print(allResults.results.first?.manufacturer)
+            DispatchQueue.main.async {
+                self.pickerView.delegate = self
+            }
         }
         
-        print("after completion handler")
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    
+    // helper functions for pickerView ----------
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return names.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return names[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
     }
 
 }

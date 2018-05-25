@@ -11,6 +11,7 @@ import UIKit
 class VehicleController: UIViewController {
     
     let client = StarWarsAPIClient()
+    var names: [String] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,10 +21,21 @@ class VehicleController: UIViewController {
         let vehicles = IdentificationDetails(idType: .vehicles)
         
         client.getObjects(with: vehicles) { vehicles, error in
-            print(vehicles)
-            print(error)
+            let decoder = JSONDecoder()
+            guard let vehicles = vehicles else {
+                print("vehicles is empty")
+                return
+            }
+            
+            let allResults = try! decoder.decode(AllResults.self, from: vehicles)
+            for result in allResults.results {
+                self.names.append(result.name!)
+            }
+            
+            DispatchQueue.main.async {
+                //self.pickerView.delegate = self
+            }
         }
-        
         
     }
 
