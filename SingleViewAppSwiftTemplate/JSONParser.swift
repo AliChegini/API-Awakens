@@ -29,13 +29,13 @@ struct Result: Decodable {
         case make = "manufacturer"
         case cost = "cost_in_credits"
         case length
-        case classType
+        case classType = "starship_class"
         case crew
-        case born
-        case home
+        case born = "birth_year"
+        case home = "homeworld"
         case height
-        case eyes
-        case hair
+        case eyes = "eye_color"
+        case hair = "hair_color"
     }
 }
 

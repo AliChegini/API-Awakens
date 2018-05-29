@@ -14,6 +14,7 @@ class StarshipController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     var names: [String] = []
     
     @IBOutlet weak var pickerView: UIPickerView!
+    @IBOutlet weak var name: UILabel!
     
     
     override func viewDidLoad() {
@@ -61,7 +62,7 @@ class StarshipController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
+        name.text = names[row]
     }
 
 }
