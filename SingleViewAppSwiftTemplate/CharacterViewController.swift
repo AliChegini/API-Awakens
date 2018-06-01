@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TableViewController: UITableViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class CharacterViewController: UITableViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
     let client = StarWarsAPIClient()
     var fullInfo: [Result] = []
@@ -39,7 +39,6 @@ class TableViewController: UITableViewController, UIPickerViewDelegate, UIPicker
             let allResults = try! decoder.decode(AllResults.self, from: characters)
             for result in allResults.results {
                 self.fullInfo.append(result)
-                print(result)
             }
             
             DispatchQueue.main.async {
