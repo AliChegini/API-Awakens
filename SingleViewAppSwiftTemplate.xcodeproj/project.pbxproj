@@ -15,6 +15,8 @@
 		3A8AADDE1DF9B85E00A2B931 /* SingleViewAppSwiftTemplateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8AADDD1DF9B85E00A2B931 /* SingleViewAppSwiftTemplateTests.swift */; };
 		3A8AADE91DF9B85E00A2B931 /* SingleViewAppSwiftTemplateUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8AADE81DF9B85E00A2B931 /* SingleViewAppSwiftTemplateUITests.swift */; };
 		7C09D76020BBD68900E26644 /* CharacterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C09D75F20BBD68900E26644 /* CharacterViewController.swift */; };
+		7C14119520C2C5BC009ACFDA /* VehicleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C14119420C2C5BC009ACFDA /* VehicleViewController.swift */; };
+		7C14119720C2CE66009ACFDA /* StarshipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C14119620C2CE66009ACFDA /* StarshipViewController.swift */; };
 		7C54061220AA1830004036E9 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C54061120AA1830004036E9 /* Model.swift */; };
 		7C54061420AA39D3004036E9 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C54061320AA39D3004036E9 /* ViewModel.swift */; };
 		7C54061620AA62C0004036E9 /* JSONDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C54061520AA62C0004036E9 /* JSONDownloader.swift */; };
@@ -61,6 +63,8 @@
 		3A8AADE81DF9B85E00A2B931 /* SingleViewAppSwiftTemplateUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleViewAppSwiftTemplateUITests.swift; sourceTree = "<group>"; };
 		3A8AADEA1DF9B85E00A2B931 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7C09D75F20BBD68900E26644 /* CharacterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewController.swift; sourceTree = "<group>"; };
+		7C14119420C2C5BC009ACFDA /* VehicleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleViewController.swift; sourceTree = "<group>"; };
+		7C14119620C2CE66009ACFDA /* StarshipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarshipViewController.swift; sourceTree = "<group>"; };
 		7C54061120AA1830004036E9 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		7C54061320AA39D3004036E9 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		7C54061520AA62C0004036E9 /* JSONDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDownloader.swift; sourceTree = "<group>"; };
@@ -126,6 +130,8 @@
 				3A8AADC81DF9B85E00A2B931 /* AppDelegate.swift */,
 				3A8AADCA1DF9B85E00A2B931 /* ViewController.swift */,
 				7C09D75F20BBD68900E26644 /* CharacterViewController.swift */,
+				7C14119420C2C5BC009ACFDA /* VehicleViewController.swift */,
+				7C14119620C2CE66009ACFDA /* StarshipViewController.swift */,
 				7CBC125320AE762A0070E804 /* VehicleController.swift */,
 				7CBC125520AE76440070E804 /* StarshipController.swift */,
 				7C54061120AA1830004036E9 /* Model.swift */,
@@ -303,7 +309,9 @@
 				7C09D76020BBD68900E26644 /* CharacterViewController.swift in Sources */,
 				7CBC125020ADF3650070E804 /* Starship.swift in Sources */,
 				7C54061220AA1830004036E9 /* Model.swift in Sources */,
+				7C14119720C2CE66009ACFDA /* StarshipViewController.swift in Sources */,
 				3A8AADCB1DF9B85E00A2B931 /* ViewController.swift in Sources */,
+				7C14119520C2C5BC009ACFDA /* VehicleViewController.swift in Sources */,
 				7C54061620AA62C0004036E9 /* JSONDownloader.swift in Sources */,
 				7C54061420AA39D3004036E9 /* ViewModel.swift in Sources */,
 				7CBC125620AE76440070E804 /* StarshipController.swift in Sources */,

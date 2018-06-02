@@ -14,7 +14,8 @@ struct Result: Decodable {
     var make: String?
     var cost: String?
     var length: String?
-    var classType: String?
+    var vehicleClassType: String?
+    var starshipClassType: String?
     var crew: String?
     
     var born: String?
@@ -29,7 +30,8 @@ struct Result: Decodable {
         case make = "manufacturer"
         case cost = "cost_in_credits"
         case length
-        case classType = "starship_class"
+        case starshipClassType = "starship_class"
+        case vehicleClassType = "vehicle_class"
         case crew
         case born = "birth_year"
         case home = "homeworld"

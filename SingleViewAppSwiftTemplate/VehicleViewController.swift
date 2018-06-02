@@ -1,45 +1,47 @@
 //
-//  TableViewController.swift
+//  VehicleViewController.swift
 //  SingleViewAppSwiftTemplate
 //
-//  Created by Ehsan on 28/05/2018.
+//  Created by Ehsan on 02/06/2018.
 //  Copyright © 2018 Treehouse. All rights reserved.
 //
 
 import UIKit
 
-class CharacterViewController: UITableViewController, UIPickerViewDelegate, UIPickerViewDataSource {
-
+class VehicleViewController: UITableViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+    
     let client = StarWarsAPIClient()
     var fullInfo: [Result] = []
-   
-    
-    @IBOutlet weak var name: UILabel!
-    @IBOutlet weak var home: UILabel!
-    @IBOutlet weak var eyes: UILabel!
-    @IBOutlet weak var hair: UILabel!
-    @IBOutlet weak var born: UILabel!
-    @IBOutlet weak var height: UILabel!
-    
-    
     
     @IBOutlet weak var pickerView: UIPickerView!
+    
+    @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var make: UILabel!
+    @IBOutlet weak var cost: UILabel!
+    @IBOutlet weak var length: UILabel!
+    @IBOutlet weak var classType: UILabel!
+    @IBOutlet weak var crew: UILabel!
+    
+    @IBOutlet weak var smallest: UILabel!
+    @IBOutlet weak var largest: UILabel!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Characters"
+        self.title = "Vehicles"
         
-        let characters = IdentificationDetails(idType: .people)
+        let vehicles = IdentificationDetails(idType: .vehicles)
         
-        client.getObjects(with: characters) { characters, error in
+        client.getObjects(with: vehicles) { vehicles, error in
             let decoder = JSONDecoder()
-            guard let characters = characters else {
-                print("characters is empty")
+            guard let vehicles = vehicles else {
+                print("vehicles is empty")
                 return
             }
             
-            let allResults = try! decoder.decode(AllResults.self, from: characters)
+            let allResults = try! decoder.decode(AllResults.self, from: vehicles)
             for result in allResults.results {
                 self.fullInfo.append(result)
             }
@@ -48,8 +50,9 @@ class CharacterViewController: UITableViewController, UIPickerViewDelegate, UIPi
                 self.pickerView.delegate = self
             }
         }
-    }
 
+    
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -72,11 +75,11 @@ class CharacterViewController: UITableViewController, UIPickerViewDelegate, UIPi
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         name.text = fullInfo[row].name
-        home.text = fullInfo[row].home
-        eyes.text  = fullInfo[row].eyes
-        hair.text = fullInfo[row].hair
-        born.text = fullInfo[row].born
-        height.text = fullInfo[row].height
+        make.text = fullInfo[row].make
+        cost.text = fullInfo[row].cost
+        length.text  = fullInfo[row].length
+        classType.text = fullInfo[row].vehicleClassType
+        crew.text = fullInfo[row].crew
     }
     
 }
