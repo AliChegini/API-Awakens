@@ -347,8 +347,10 @@
                         <outlet property="hair" destination="ExR-zo-2pJ" id="o9T-0N-zQg"/>
                         <outlet property="height" destination="RZY-Nr-pts" id="1gX-cn-syl"/>
                         <outlet property="home" destination="d11-eF-kJh" id="Jld-O3-ibZ"/>
+                        <outlet property="largest" destination="zTz-dt-9Xh" id="zAB-qW-FYV"/>
                         <outlet property="name" destination="5cX-DX-2ei" id="Brl-mx-EcM"/>
                         <outlet property="pickerView" destination="scs-BP-s4m" id="Ye4-ju-Spk"/>
+                        <outlet property="smallest" destination="ekH-9s-7Td" id="dj2-Zh-I1d"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uRk-Fr-GzE" userLabel="First Responder" sceneMemberID="firstResponder"/>

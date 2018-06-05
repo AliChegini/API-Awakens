@@ -43,16 +43,14 @@ protocol UnifiedObjects {
 
 
 
-// Common attributes for starships and vehicles
-protocol CommonAttributes {
-    var name: String { get set }
-    var make: String { get set }
-    var cost: Int { get set }
-    var length: Double { get set }
-    var classType: String { get set }
-    var crew: Int { get set }
+func returnMin(array: [Result]) -> Result {
+    let arraySorted = array.sorted(by: { $0.height! > $1.height! })
+    return arraySorted.first!
 }
 
 
-
+func returnMax(array: [Result]) -> Result {
+    let arraySorted = array.sorted(by: { $0.height! < $1.height! })
+    return arraySorted.first!
+}
 

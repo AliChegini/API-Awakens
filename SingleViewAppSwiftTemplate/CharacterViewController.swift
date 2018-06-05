@@ -12,7 +12,7 @@ class CharacterViewController: UITableViewController, UIPickerViewDelegate, UIPi
 
     let client = StarWarsAPIClient()
     var fullInfo: [Result] = []
-   
+    var heights: [String] = []
     
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var home: UILabel!
@@ -20,7 +20,8 @@ class CharacterViewController: UITableViewController, UIPickerViewDelegate, UIPi
     @IBOutlet weak var hair: UILabel!
     @IBOutlet weak var born: UILabel!
     @IBOutlet weak var height: UILabel!
-    
+    @IBOutlet weak var smallest: UILabel!
+    @IBOutlet weak var largest: UILabel!
     
     
     @IBOutlet weak var pickerView: UIPickerView!
@@ -42,7 +43,13 @@ class CharacterViewController: UITableViewController, UIPickerViewDelegate, UIPi
             let allResults = try! decoder.decode(AllResults.self, from: characters)
             for result in allResults.results {
                 self.fullInfo.append(result)
+                
+                if let height = result.height {
+                    self.heights.append(height)
+                }
             }
+            
+            
             
             DispatchQueue.main.async {
                 self.pickerView.delegate = self
@@ -77,6 +84,8 @@ class CharacterViewController: UITableViewController, UIPickerViewDelegate, UIPi
         hair.text = fullInfo[row].hair
         born.text = fullInfo[row].born
         height.text = fullInfo[row].height
+        smallest.text = returnMin(array: fullInfo).name
+        largest.text = returnMax(array: fullInfo).name
     }
     
 }
