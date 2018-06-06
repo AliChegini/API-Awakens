@@ -12,7 +12,9 @@ class CharacterViewController: UITableViewController, UIPickerViewDelegate, UIPi
 
     let client = StarWarsAPIClient()
     var fullInfo: [Result] = []
-    var heights: [String] = []
+    // array to hold the characters
+    var characters: [Character] = []
+    
     
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var home: UILabel!
@@ -31,9 +33,9 @@ class CharacterViewController: UITableViewController, UIPickerViewDelegate, UIPi
         
         self.title = "Characters"
         
-        let characters = IdentificationDetails(idType: .people)
+        let people = IdentificationDetails(idType: .people)
         
-        client.getObjects(with: characters) { characters, error in
+        client.getObjects(with: people) { characters, error in
             let decoder = JSONDecoder()
             guard let characters = characters else {
                 print("characters is empty")
@@ -42,14 +44,14 @@ class CharacterViewController: UITableViewController, UIPickerViewDelegate, UIPi
             
             let allResults = try! decoder.decode(AllResults.self, from: characters)
             for result in allResults.results {
-                self.fullInfo.append(result)
-                
-                if let height = result.height {
-                    self.heights.append(height)
+                let character = Character(name: result.name, born: result.born, home: result.home, height: result.height, eyes: result.eyes, hair: result.hair)
+                if let characterUnwrapped = character {
+                    self.characters.append(characterUnwrapped)
                 }
+                
             }
             
-            
+            print(characters.count)
             
             DispatchQueue.main.async {
                 self.pickerView.delegate = self
@@ -70,22 +72,23 @@ class CharacterViewController: UITableViewController, UIPickerViewDelegate, UIPi
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return fullInfo.count
+        return characters.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return fullInfo[row].name
+        return characters[row].name
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        name.text = fullInfo[row].name
-        home.text = fullInfo[row].home
-        eyes.text  = fullInfo[row].eyes
-        hair.text = fullInfo[row].hair
-        born.text = fullInfo[row].born
-        height.text = fullInfo[row].height
-        smallest.text = returnMin(array: fullInfo).name
-        largest.text = returnMax(array: fullInfo).name
+        name.text = characters[row].name
+        home.text = characters[row].home
+        eyes.text  = characters[row].eyes
+        hair.text = characters[row].hair
+        born.text = characters[row].born
+        //height.text = characters[row].height
+        
+        //smallest.text = returnMin(array: fullInfo).name
+        //largest.text = returnMax(array: fullInfo).name
     }
     
 }

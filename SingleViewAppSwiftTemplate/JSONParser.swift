@@ -39,6 +39,7 @@ struct Result: Decodable {
         case eyes = "eye_color"
         case hair = "hair_color"
     }
+    
 }
 
 

@@ -42,15 +42,11 @@ protocol UnifiedObjects {
 }
 
 
-
-func returnMin(array: [Result]) -> Result {
-    let arraySorted = array.sorted(by: { $0.height! > $1.height! })
-    return arraySorted.first!
+protocol Sortable {
+    associatedtype SortableType: Comparable
+    var sortDescriptor: SortableType { get }
 }
 
 
-func returnMax(array: [Result]) -> Result {
-    let arraySorted = array.sorted(by: { $0.height! < $1.height! })
-    return arraySorted.first!
-}
+
 

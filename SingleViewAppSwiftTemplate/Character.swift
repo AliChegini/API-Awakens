@@ -20,13 +20,24 @@ struct Character: UnifiedObjects, Codable {
     var classType: String? = nil
     var crew: Int? = nil
     
-    init(name: String?, born: String?, home: String?, height: Double?, eyes: String?, hair: String?) {
+    init?(name: String?, born: String?, home: String?, height: String?, eyes: String?, hair: String?) {
         self.name = name
         self.born = born
         self.home = home
-        self.height = height
         self.eyes = eyes
         self.hair = hair
+        
+        guard let heightUnwrapped = height else {
+            return nil
+        }
+        self.height = Double(heightUnwrapped)
+    }
+}
+
+
+extension Character: Sortable {
+    var sortDescriptor: Double {
+        return self.height!
     }
 }
 
