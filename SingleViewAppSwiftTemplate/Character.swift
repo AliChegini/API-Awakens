@@ -15,10 +15,10 @@ struct Character: UnifiedObjects, Codable {
     var hair: String?
     
     var make: String? = nil
-    var cost: Int? = nil
+    var cost: String? = nil
     var length: Double? = nil
     var classType: String? = nil
-    var crew: Int? = nil
+    var crew: String? = nil
     
     init?(name: String?, born: String?, home: String?, height: String?, eyes: String?, hair: String?) {
         self.name = name

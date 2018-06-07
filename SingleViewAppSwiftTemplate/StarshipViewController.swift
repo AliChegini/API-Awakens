@@ -11,7 +11,9 @@ import UIKit
 class StarshipViewController: UITableViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     let client = StarWarsAPIClient()
-    var fullInfo: [Result] = []
+    // array to hold the Vehicles
+    var allStarships: [Starship] = []
+    
 
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var make: UILabel!
@@ -42,8 +44,13 @@ class StarshipViewController: UITableViewController, UIPickerViewDelegate, UIPic
             
             let allResults = try! decoder.decode(AllResults.self, from: starships)
             for result in allResults.results {
-                self.fullInfo.append(result)
+                let starship = Starship(name: result.name, make: result.make, cost: result.cost, length: result.length, classType: result.starshipClassType, crew: result.crew)
+                if let starshipUnwrapped = starship {
+                    self.allStarships.append(starshipUnwrapped)
+                }
             }
+            
+            self.allStarships.sort(by: { $0.sortDescriptor > $1.sortDescriptor })
             
             DispatchQueue.main.async {
                 self.pickerView.delegate = self
@@ -64,20 +71,23 @@ class StarshipViewController: UITableViewController, UIPickerViewDelegate, UIPic
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return fullInfo.count
+        return allStarships.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return fullInfo[row].name
+        return allStarships[row].name
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        name.text = fullInfo[row].name
-        make.text = fullInfo[row].make
-        cost.text = fullInfo[row].cost
-        length.text  = fullInfo[row].length
-        classType.text = fullInfo[row].starshipClassType
-        crew.text = fullInfo[row].crew
+        name.text = allStarships[row].name
+        make.text = allStarships[row].make
+        cost.text = allStarships[row].cost
+        length.text  = allStarships[row].length?.description
+        classType.text = allStarships[row].classType
+        crew.text = allStarships[row].crew
+        
+        smallest.text = allStarships.last?.name
+        largest.text = allStarships.first?.name
     }
 
 }

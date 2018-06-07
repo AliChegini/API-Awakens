@@ -9,10 +9,10 @@
 struct Starship: UnifiedObjects, Codable {
     var name: String?
     var make: String?
-    var cost: Int?
+    var cost: String?
     var length: Double?
     var classType: String?
-    var crew: Int?
+    var crew: String?
     
     var born: String? = nil
     var home: String? = nil
@@ -20,13 +20,25 @@ struct Starship: UnifiedObjects, Codable {
     var eyes: String? = nil
     var hair: String? = nil
     
-    init(name: String?, make: String?, cost: Int?, length: Double?, classType: String?, crew: Int?) {
+    init?(name: String?, make: String?, cost: String?, length: String?, classType: String?, crew: String?) {
         self.name = name
         self.make = make
         self.cost = cost
-        self.length = length
         self.classType = classType
         self.crew = crew
+        
+        guard let lengthUnwrapped = length else {
+            return nil
+        }
+        
+        self.length = Double(lengthUnwrapped)
+    }
+}
+
+
+extension Starship: Sortable {
+    var sortDescriptor: Double {
+        return self.length!
     }
 }
 

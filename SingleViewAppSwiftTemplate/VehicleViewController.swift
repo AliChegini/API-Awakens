@@ -11,7 +11,8 @@ import UIKit
 class VehicleViewController: UITableViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     let client = StarWarsAPIClient()
-    var fullInfo: [Result] = []
+    // array to hold the Vehicles
+    var allVehicles: [Vehicle] = []
     
     @IBOutlet weak var pickerView: UIPickerView!
     
@@ -43,8 +44,13 @@ class VehicleViewController: UITableViewController, UIPickerViewDelegate, UIPick
             
             let allResults = try! decoder.decode(AllResults.self, from: vehicles)
             for result in allResults.results {
-                self.fullInfo.append(result)
+                let vehicle = Vehicle(name: result.name, make: result.make, cost: result.cost, length: result.length, classType: result.vehicleClassType, crew: result.crew)
+                if let vehicleUnwrapped = vehicle {
+                    self.allVehicles.append(vehicleUnwrapped)
+                }
             }
+            
+            self.allVehicles.sort(by: { $0.sortDescriptor > $1.sortDescriptor })
             
             DispatchQueue.main.async {
                 self.pickerView.delegate = self
@@ -66,20 +72,23 @@ class VehicleViewController: UITableViewController, UIPickerViewDelegate, UIPick
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return fullInfo.count
+        return allVehicles.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return fullInfo[row].name
+        return allVehicles[row].name
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        name.text = fullInfo[row].name
-        make.text = fullInfo[row].make
-        cost.text = fullInfo[row].cost
-        length.text  = fullInfo[row].length
-        classType.text = fullInfo[row].vehicleClassType
-        crew.text = fullInfo[row].crew
+        name.text = allVehicles[row].name
+        make.text = allVehicles[row].make
+        cost.text = allVehicles[row].cost
+        length.text  = allVehicles[row].length?.description
+        classType.text = allVehicles[row].classType
+        crew.text = allVehicles[row].crew
+        
+        smallest.text = allVehicles.last?.name
+        largest.text = allVehicles.first?.name
     }
     
 }

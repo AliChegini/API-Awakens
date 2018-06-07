@@ -48,6 +48,10 @@ struct AllResults: Decodable {
     let results: [Result]
 }
 
+struct Home: Decodable {
+    var name: String?
+}
+
 
 
 

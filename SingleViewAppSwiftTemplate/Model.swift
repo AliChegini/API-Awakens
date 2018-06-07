@@ -29,10 +29,10 @@ enum IdType: String {
 protocol UnifiedObjects {
     var name: String? { get set }
     var make: String? { get set }
-    var cost: Int? { get set }
+    var cost: String? { get set }
     var length: Double? { get set }
     var classType: String? { get set }
-    var crew: Int? { get set }
+    var crew: String? { get set }
     var born: String? { get set }
     var home: String? { get set }
     var height: Double? { get set }

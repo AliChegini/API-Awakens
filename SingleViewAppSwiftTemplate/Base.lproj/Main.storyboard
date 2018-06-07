@@ -173,16 +173,17 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Height" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iVo-Y1-pEh">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Height" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iVo-Y1-pEh">
                                                     <rect key="frame" x="16" y="11" width="51" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Value" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RZY-Nr-pts">
-                                                    <rect key="frame" x="94" y="11" width="42" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Value" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RZY-Nr-pts">
+                                                    <rect key="frame" x="87" y="11.5" width="50" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="50" id="7Sz-rq-CQT"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -200,6 +201,12 @@
                                                     <state key="normal" title="Metric"/>
                                                 </button>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="RZY-Nr-pts" firstAttribute="centerY" secondItem="hrI-yE-V43" secondAttribute="centerY" id="Bov-y4-XyI"/>
+                                                <constraint firstItem="iVo-Y1-pEh" firstAttribute="leading" secondItem="hrI-yE-V43" secondAttribute="leadingMargin" id="SmQ-aK-MIo"/>
+                                                <constraint firstItem="RZY-Nr-pts" firstAttribute="leading" secondItem="iVo-Y1-pEh" secondAttribute="trailing" constant="20" id="Yfp-dC-Eyn"/>
+                                                <constraint firstItem="iVo-Y1-pEh" firstAttribute="centerY" secondItem="hrI-yE-V43" secondAttribute="centerY" id="w2R-wC-RRO"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="xbd-ke-nBq" detailTextLabel="EU7-cY-sIQ" style="IBUITableViewCellStyleValue1" id="bNp-T9-jHX">

@@ -39,6 +39,23 @@ class StarWarsAPIClient {
         task.resume()
     }
     
+    
+    func getHomeName(with url: String, completionHandler completion: @escaping (Data?, StarWarsError?) -> Void ) {
+        let request = URLRequest(url: URL(string: url)!)
+        
+        let task = downloader.dataTask(with: request) { data, error in
+            guard let data = data else {
+                completion(nil, error)
+                return
+            }
+            
+            completion(data, nil)
+        }
+        
+        task.resume()
+        
+    }
+    
 }
 
 
