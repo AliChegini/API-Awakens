@@ -13,6 +13,8 @@ class VehicleViewController: UITableViewController, UIPickerViewDelegate, UIPick
     let client = StarWarsAPIClient()
     // array to hold the Vehicles
     var allVehicles: [Vehicle] = []
+    let englishUnit = 39.37 // 1 meter is 39.37 inches
+    var returnedLength: Double? = nil
     
     @IBOutlet weak var pickerView: UIPickerView!
     
@@ -66,6 +68,22 @@ class VehicleViewController: UITableViewController, UIPickerViewDelegate, UIPick
     }
     
     
+    @IBAction func convertToEnglishUnit(_ sender: UIButton) {
+        if let currentValue = returnedLength {
+            let result = currentValue * englishUnit
+            length.text = "\(result) Inches"
+        }
+    }
+    
+    
+    @IBAction func convertToMetricUnit(_ sender: UIButton) {
+        if let currentValue = returnedLength {
+            length.text = "\(currentValue) Meter"
+        }
+    }
+    
+    
+    
     // helper functions for pickerView ----------
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -84,6 +102,8 @@ class VehicleViewController: UITableViewController, UIPickerViewDelegate, UIPick
         make.text = allVehicles[row].make
         cost.text = allVehicles[row].cost
         length.text  = allVehicles[row].length?.description
+        returnedLength = allVehicles[row].length
+        
         classType.text = allVehicles[row].classType
         crew.text = allVehicles[row].crew
         

@@ -13,7 +13,9 @@ class CharacterViewController: UITableViewController, UIPickerViewDelegate, UIPi
     let client = StarWarsAPIClient()
     // array to hold the characters
     var allCharacters: [Character] = []
-    
+    let englishUnit = 0.39
+    let metricUnit = 100.0
+    var returnedHeight: Double? = nil
     
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var home: UILabel!
@@ -26,6 +28,8 @@ class CharacterViewController: UITableViewController, UIPickerViewDelegate, UIPi
     
     
     @IBOutlet weak var pickerView: UIPickerView!
+    @IBOutlet weak var english: UIButton!
+    @IBOutlet weak var metric: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,6 +72,24 @@ class CharacterViewController: UITableViewController, UIPickerViewDelegate, UIPi
     }
     
     
+    @IBAction func convertToEnglishUnit(_ sender: UIButton) {
+        if let currentValue = returnedHeight {
+            let result = currentValue * englishUnit
+            height.text = "\(result) Inches"
+        }
+    }
+    
+    
+    @IBAction func convertToMetric(_ sender: UIButton) {
+        if let currentValue = returnedHeight {
+            let result = currentValue / metricUnit
+            height.text = "\(result) Meter"
+        }
+    }
+    
+    
+    
+    
     // helper functions for pickerView ----------
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -108,6 +130,7 @@ class CharacterViewController: UITableViewController, UIPickerViewDelegate, UIPi
         hair.text = allCharacters[row].hair
         born.text = allCharacters[row].born
         height.text = allCharacters[row].height?.description
+        returnedHeight = allCharacters[row].height
         
         smallest.text = allCharacters.last?.name
         largest.text = allCharacters.first?.name

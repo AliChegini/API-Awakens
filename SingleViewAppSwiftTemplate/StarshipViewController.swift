@@ -13,6 +13,8 @@ class StarshipViewController: UITableViewController, UIPickerViewDelegate, UIPic
     let client = StarWarsAPIClient()
     // array to hold the Vehicles
     var allStarships: [Starship] = []
+    let englishUnit = 39.37  // 1 meter is 39.37 inches
+    var returnedLength: Double? = nil
     
 
     @IBOutlet weak var name: UILabel!
@@ -63,6 +65,23 @@ class StarshipViewController: UITableViewController, UIPickerViewDelegate, UIPic
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+    @IBAction func convertToEnglishUnit(_ sender: UIButton) {
+        if let currentValue = returnedLength {
+            let result = currentValue * englishUnit
+            length.text = "\(result) Inches"
+        }
+    }
+    
+    
+    @IBAction func convertToMetricUnit(_ sender: UIButton) {
+        if let currentValue = returnedLength {
+            length.text = "\(currentValue) Meter"
+        }
+    }
+    
+    
 
     
     // helper functions for pickerView ----------
@@ -83,6 +102,8 @@ class StarshipViewController: UITableViewController, UIPickerViewDelegate, UIPic
         make.text = allStarships[row].make
         cost.text = allStarships[row].cost
         length.text  = allStarships[row].length?.description
+        returnedLength = allStarships[row].length
+        
         classType.text = allStarships[row].classType
         crew.text = allStarships[row].crew
         
