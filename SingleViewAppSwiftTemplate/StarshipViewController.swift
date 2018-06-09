@@ -15,8 +15,9 @@ class StarshipViewController: UITableViewController, UIPickerViewDelegate, UIPic
     var allStarships: [Starship] = []
     let englishUnit = 39.37  // 1 meter is 39.37 inches
     var returnedLength: Double? = nil
+    var returnedCost: Double? = nil
     
-
+    
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var make: UILabel!
     @IBOutlet weak var cost: UILabel!
@@ -24,16 +25,20 @@ class StarshipViewController: UITableViewController, UIPickerViewDelegate, UIPic
     @IBOutlet weak var classType: UILabel!
     @IBOutlet weak var crew: UILabel!
     
+    
+    
     @IBOutlet weak var pickerView: UIPickerView!
     
     @IBOutlet weak var smallest: UILabel!
     @IBOutlet weak var largest: UILabel!
     
+    @IBOutlet weak var exchangeRate: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.title = "Starships"
+        
         
         let starships = IdentificationDetails(idType: .starships)
         
@@ -82,6 +87,16 @@ class StarshipViewController: UITableViewController, UIPickerViewDelegate, UIPic
     }
     
     
+    @IBAction func convertToUSD(_ sender: UIButton) {
+        if let insertedRate = exchangeRate.text {
+            let insertedRateDouble = Double(insertedRate)!
+            if let returnedCostUnwrapped = returnedCost {
+                let result = insertedRateDouble * returnedCostUnwrapped
+                cost.text = "\(result)"
+            }
+        }
+    }
+    
 
     
     // helper functions for pickerView ----------
@@ -101,6 +116,9 @@ class StarshipViewController: UITableViewController, UIPickerViewDelegate, UIPic
         name.text = allStarships[row].name
         make.text = allStarships[row].make
         cost.text = allStarships[row].cost
+        if let costUnwrapped = allStarships[row].cost {
+            returnedCost = Double(costUnwrapped)
+        }
         length.text  = allStarships[row].length?.description
         returnedLength = allStarships[row].length
         

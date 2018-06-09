@@ -8,13 +8,14 @@
 
 import UIKit
 
-class VehicleViewController: UITableViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class VehicleViewController: UITableViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
     
     let client = StarWarsAPIClient()
     // array to hold the Vehicles
     var allVehicles: [Vehicle] = []
     let englishUnit = 39.37 // 1 meter is 39.37 inches
     var returnedLength: Double? = nil
+    var returnedCost: Double? = nil
     
     @IBOutlet weak var pickerView: UIPickerView!
     
@@ -24,16 +25,25 @@ class VehicleViewController: UITableViewController, UIPickerViewDelegate, UIPick
     @IBOutlet weak var length: UILabel!
     @IBOutlet weak var classType: UILabel!
     @IBOutlet weak var crew: UILabel!
+    @IBOutlet weak var exchange: UITextField!
     
     @IBOutlet weak var smallest: UILabel!
     @IBOutlet weak var largest: UILabel!
     
+    @IBOutlet weak var exchangeRate: UITextField!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.title = "Vehicles"
+        exchange.delegate = self
+        
+        // Observer for Keyboard
+        NotificationCenter.default.addObserver(self, selector: #selector(VehicleViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(VehicleViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
+        self.hideKeyboardWhenTappedAround()
         
         let vehicles = IdentificationDetails(idType: .vehicles)
         
@@ -59,13 +69,14 @@ class VehicleViewController: UITableViewController, UIPickerViewDelegate, UIPick
             }
         }
 
-    
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
     
     
     @IBAction func convertToEnglishUnit(_ sender: UIButton) {
@@ -79,6 +90,16 @@ class VehicleViewController: UITableViewController, UIPickerViewDelegate, UIPick
     @IBAction func convertToMetricUnit(_ sender: UIButton) {
         if let currentValue = returnedLength {
             length.text = "\(currentValue) Meter"
+        }
+    }
+    
+    
+    @IBAction func convertToUSD(_ sender: UIButton) {
+        if let insertedRate = exchangeRate.text {
+            if let returnedCostUnwrapped = returnedCost {
+                let result = Double(insertedRate)! * returnedCostUnwrapped
+                cost.text = "\(result)"
+            }
         }
     }
     
@@ -101,6 +122,10 @@ class VehicleViewController: UITableViewController, UIPickerViewDelegate, UIPick
         name.text = allVehicles[row].name
         make.text = allVehicles[row].make
         cost.text = allVehicles[row].cost
+        if let costUnwrapped = allVehicles[row].cost {
+            returnedCost = Double(costUnwrapped)
+        }
+        
         length.text  = allVehicles[row].length?.description
         returnedLength = allVehicles[row].length
         
