@@ -13,6 +13,7 @@ enum StarWarsError: Error {
     case invalidData
     case jsonConversionFailure
     case invalidURL
+    case noInternetConnection
 }
 
 

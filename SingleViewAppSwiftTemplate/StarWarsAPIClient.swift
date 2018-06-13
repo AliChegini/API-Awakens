@@ -30,13 +30,6 @@ class StarWarsAPIClient {
         let task = downloader.dataTask(with: request) { data, error in
             guard let data = data else {
                 completion(nil, error)
-                if let urlError = error as? URLError {
-                    switch urlError.code {
-                    case .notConnectedToInternet:
-                        print("Connection down!")
-                    default: break
-                    }
-                }
                 return
             }
             

@@ -39,3 +39,28 @@ extension UITableViewController {
         view.endEditing(true)
     }
 }
+
+
+extension UITableViewController {
+    // Generic function to show error messages to user
+    func genericAlert<T>(error: T) {
+        let alert = UIAlertController(title: "Error", message: "\(error)", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Try Again", style: .default, handler: nil))
+        self.present(alert, animated: true)
+    }
+}
+
+
+extension UIAlertController {
+    func presentInOwnWindow(animated: Bool, completion: (() -> Void)?) {
+        guard let rootVC = UIApplication.shared.keyWindow?.rootViewController else { return }
+        rootVC.present(self, animated: animated, completion: completion)
+    }
+}
+
+
+
+
+
+
+

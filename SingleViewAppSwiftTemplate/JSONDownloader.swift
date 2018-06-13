@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class JSONDownloader {
     let session: URLSession
@@ -23,6 +24,18 @@ class JSONDownloader {
     func dataTask(with request: URLRequest, completionHandler completion: @escaping (Data?, StarWarsError?) -> Void) -> URLSessionDataTask {
         let task = session.dataTask(with: request) { data, response, error in
             
+            if let urlError = error as? URLError {
+                switch urlError.code {
+                case .notConnectedToInternet:
+                    //how to throw error or show an alert to user ?
+                    //throw StarWarsError.noInternetConnection
+                case .networkConnectionLost:
+                    print("Connection down!")
+                    
+                default: break
+                }
+            }
+            
             // Convert to HTTP Response
             guard let httpResponse = response as? HTTPURLResponse else {
                 completion(nil, .requestFailed)
@@ -38,10 +51,17 @@ class JSONDownloader {
             } else {
                 completion(nil, .responseUnsuccessful)
             }
+            
         }
         return task
         
     }
+    
+    
+    
+    
+    
+    
 }
 
 
