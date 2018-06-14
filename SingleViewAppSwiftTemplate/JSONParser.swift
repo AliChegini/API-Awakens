@@ -24,7 +24,6 @@ struct Result: Decodable {
     var eyes: String?
     var hair: String?
     
-    
     enum CodingKeys: String, CodingKey {
         case name
         case make = "manufacturer"

@@ -45,23 +45,28 @@ class CharacterViewController: UITableViewController, UIPickerViewDelegate, UIPi
                 return
             }
             
-            let allResults = try! decoder.decode(AllResults.self, from: characters)
-            for result in allResults.results {
-                let character = Character(name: result.name, born: result.born, home: result.home, height: result.height, eyes: result.eyes, hair: result.hair)
-                if let characterUnwrapped = character {
-                    self.allCharacters.append(characterUnwrapped)
+            let allResults = try? decoder.decode(AllResults.self, from: characters)
+            if let allResultsUnwrapped = allResults {
+                for result in allResultsUnwrapped.results {
+                    let character = Character(name: result.name, born: result.born, home: result.home, height: result.height, eyes: result.eyes, hair: result.hair)
+                    if let characterUnwrapped = character {
+                        self.allCharacters.append(characterUnwrapped)
+                    }
                 }
+                
+                self.allCharacters.sort(by: { $0.sortDescriptor > $1.sortDescriptor })
+            // branch to handle missing key/element in JSON file
+            } else {
+                let alert = UIAlertController(title: "Error", message: "Oops, something went wrong \nPlease try again later...", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
             }
-            
-            self.allCharacters.sort(by: { $0.sortDescriptor > $1.sortDescriptor })
             
             
             DispatchQueue.main.async {
                 self.pickerView.delegate = self
             }
         }
-        
-        
         
     }
 
@@ -88,8 +93,6 @@ class CharacterViewController: UITableViewController, UIPickerViewDelegate, UIPi
     }
     
     
-    
-    
     // helper functions for pickerView ----------
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -108,7 +111,7 @@ class CharacterViewController: UITableViewController, UIPickerViewDelegate, UIPi
         
         // To get the home name
         //////////////////////////////
-        // I believe this part can be refactored to be better but I don't know how
+        // I believe this part can be refactored to be better
         client.getHomeName(with: allCharacters[row].home!) { home, error in
             let decoder = JSONDecoder()
             guard let homeUnwrapped = home else {

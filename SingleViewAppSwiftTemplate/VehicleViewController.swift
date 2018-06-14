@@ -39,10 +39,6 @@ class VehicleViewController: UITableViewController, UIPickerViewDelegate, UIPick
         self.title = "Vehicles"
         exchange.delegate = self
         
-        // Observer for Keyboard
-        NotificationCenter.default.addObserver(self, selector: #selector(VehicleViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(VehicleViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-        
         self.hideKeyboardWhenTappedAround()
         
         let vehicles = IdentificationDetails(idType: .vehicles)
@@ -54,15 +50,23 @@ class VehicleViewController: UITableViewController, UIPickerViewDelegate, UIPick
                 return
             }
             
-            let allResults = try! decoder.decode(AllResults.self, from: vehicles)
-            for result in allResults.results {
-                let vehicle = Vehicle(name: result.name, make: result.make, cost: result.cost, length: result.length, classType: result.vehicleClassType, crew: result.crew)
-                if let vehicleUnwrapped = vehicle {
-                    self.allVehicles.append(vehicleUnwrapped)
+            let allResults = try? decoder.decode(AllResults.self, from: vehicles)
+            if let allResultsUnwrapped = allResults {
+                for result in allResultsUnwrapped.results {
+                    let vehicle = Vehicle(name: result.name, make: result.make, cost: result.cost, length: result.length, classType: result.vehicleClassType, crew: result.crew)
+                    if let vehicleUnwrapped = vehicle {
+                        self.allVehicles.append(vehicleUnwrapped)
+                    }
                 }
+                
+                self.allVehicles.sort(by: { $0.sortDescriptor > $1.sortDescriptor })
+            // branch to handle missing key/element in JSON file
+            } else {
+                let alert = UIAlertController(title: "Error", message: "Oops, something went wrong \nPlease try again later...", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
             }
             
-            self.allVehicles.sort(by: { $0.sortDescriptor > $1.sortDescriptor })
             
             DispatchQueue.main.async {
                 self.pickerView.delegate = self
@@ -95,11 +99,18 @@ class VehicleViewController: UITableViewController, UIPickerViewDelegate, UIPick
     
     
     @IBAction func convertToUSD(_ sender: UIButton) {
-        if let insertedRate = exchangeRate.text {
-            if let returnedCostUnwrapped = returnedCost {
-                let result = Double(insertedRate)! * returnedCostUnwrapped
-                cost.text = "\(result)"
+        if let insertedRate = Double(exchangeRate.text!) {
+            if insertedRate > 0 {
+                if let returnedCostUnwrapped = returnedCost {
+                    let result = insertedRate * returnedCostUnwrapped
+                    cost.text = "\(result)"
+                }
+            } else {
+                let alert = UIAlertController(title: "Error", message: "Rate must be bigger than zero \nPlease try again later...", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
             }
+            
         }
     }
     

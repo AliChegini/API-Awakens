@@ -39,6 +39,7 @@ class StarshipViewController: UITableViewController, UIPickerViewDelegate, UIPic
         
         self.title = "Starships"
         
+        self.hideKeyboardWhenTappedAround()
         
         let starships = IdentificationDetails(idType: .starships)
         
@@ -49,15 +50,23 @@ class StarshipViewController: UITableViewController, UIPickerViewDelegate, UIPic
                 return
             }
             
-            let allResults = try! decoder.decode(AllResults.self, from: starships)
-            for result in allResults.results {
-                let starship = Starship(name: result.name, make: result.make, cost: result.cost, length: result.length, classType: result.starshipClassType, crew: result.crew)
-                if let starshipUnwrapped = starship {
-                    self.allStarships.append(starshipUnwrapped)
+            let allResults = try? decoder.decode(AllResults.self, from: starships)
+            if let allResultsUnwrapped = allResults {
+                for result in allResultsUnwrapped.results {
+                    let starship = Starship(name: result.name, make: result.make, cost: result.cost, length: result.length, classType: result.starshipClassType, crew: result.crew)
+                    if let starshipUnwrapped = starship {
+                        self.allStarships.append(starshipUnwrapped)
+                    }
                 }
+                self.allStarships.sort(by: { $0.sortDescriptor > $1.sortDescriptor })
+            // branch to handle missing key/element in JSON file
+            } else {
+                let alert = UIAlertController(title: "Error", message: "Oops, something went wrong \nPlease try again later...", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
             }
             
-            self.allStarships.sort(by: { $0.sortDescriptor > $1.sortDescriptor })
+            
             
             DispatchQueue.main.async {
                 self.pickerView.delegate = self
@@ -88,12 +97,18 @@ class StarshipViewController: UITableViewController, UIPickerViewDelegate, UIPic
     
     
     @IBAction func convertToUSD(_ sender: UIButton) {
-        if let insertedRate = exchangeRate.text {
-            let insertedRateDouble = Double(insertedRate)!
-            if let returnedCostUnwrapped = returnedCost {
-                let result = insertedRateDouble * returnedCostUnwrapped
-                cost.text = "\(result)"
+        if let insertedRate = Double(exchangeRate.text!) {
+            if insertedRate > 0 {
+                if let returnedCostUnwrapped = returnedCost {
+                    let result = insertedRate * returnedCostUnwrapped
+                    cost.text = "\(result)"
+                }
+            } else {
+                let alert = UIAlertController(title: "Error", message: "Rate must be bigger than zero \nPlease try again later...", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
             }
+            
         }
     }
     
