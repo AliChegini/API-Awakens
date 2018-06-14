@@ -24,14 +24,17 @@ class JSONDownloader {
     func dataTask(with request: URLRequest, completionHandler completion: @escaping (Data?, StarWarsError?) -> Void) -> URLSessionDataTask {
         let task = session.dataTask(with: request) { data, response, error in
             
+            // Alert the user for connection related errors
             if let urlError = error as? URLError {
                 switch urlError.code {
                 case .notConnectedToInternet:
-                    //how to throw error or show an alert to user ?
-                    //throw StarWarsError.noInternetConnection
+                    let alert = UIAlertController(title: "Error", message: "No Internet Connection \nPlease try again later...", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    alert.presentInOwnWindow(animated: true, completion: nil)
                 case .networkConnectionLost:
-                    print("Connection down!")
-                    
+                    let alert = UIAlertController(title: "Error", message: "Connection Lost \nPlease try again later...", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    alert.presentInOwnWindow(animated: true, completion: nil)
                 default: break
                 }
             }
@@ -56,9 +59,6 @@ class JSONDownloader {
         return task
         
     }
-    
-    
-    
     
     
     

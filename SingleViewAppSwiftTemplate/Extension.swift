@@ -41,16 +41,7 @@ extension UITableViewController {
 }
 
 
-extension UITableViewController {
-    // Generic function to show error messages to user
-    func genericAlert<T>(error: T) {
-        let alert = UIAlertController(title: "Error", message: "\(error)", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Try Again", style: .default, handler: nil))
-        self.present(alert, animated: true)
-    }
-}
-
-
+// extension to alert the user for connection related errors from JSONDownloader
 extension UIAlertController {
     func presentInOwnWindow(animated: Bool, completion: (() -> Void)?) {
         guard let rootVC = UIApplication.shared.keyWindow?.rootViewController else { return }
